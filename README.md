@@ -2,7 +2,7 @@
 
 ## Pré-requis
 
-Se connecter au portail [https://pedagogie.sandbox.univ-tours.fr:9443/#!/home]
+Se connecter au portail https://pedagogie.sandbox.univ-tours.fr:9443/#!/home .
 
 1. Cliquer sur la l'instance Docker courante
 ![stacks](./img/Screenshot%202025-04-12%20at%2021-31-26%20Portainer%2010.172.44.23%20-%20Docker%20CPU%201%20-%20docker1.pedagogie.sandbox.univ-tours.fr.png)
