@@ -8,25 +8,8 @@ Dans cet exercice, nous allons créer une base de données pour gérer les dons 
 À définir lors du premier TP. 
 
 ### Format 
-1 Fichier contenant les éléments d'analyses demandés en première partie :
-1. Analyse des besoins
-2. Modélisation des données
-3. Modélisation logique
 
-1 dossier contenant 1 script par exercice. Les fichiers devront être nommés comme suit :
-1. ``2024_BDD_NOM_PRENOM_EX1.sql``
-2. ``2024_BDD_NOM_PRENOM_EX2.sql``
-
-Chaque requête doit être commentée au préalable pour expliquer le comportement attendu
-
-Par exemple : 
-```sql
--- 1. Streamers participant à au moins un défi
-SELECT ...
-```
-
-Ces fichiers devront se trouver sur un référentiel public GIT.
-vous devrez juste envoyer le lien du GIT en fin de TP à [alexandre.touret@univ-tours.fr](mailto://alexandre.touret@univ-tours.fr) avec comme Objet : [BDD4][Nom][Prenom] - Rendu de TP
+cf. [README_WORKSHOP](./README_WORKSHOP.md)
 
 ## 📊 Analyse des besoins (Contexte ZEvent)
 
@@ -181,9 +164,6 @@ Effectuez au moins 4 requêtes SELECT pour vérifier vos données :
 3. **Les défis validés ayant un montant palier > 5000 €**
 4. **Les streams dont la date de fin effective est NULL** (c'est-à-dire, non terminés)
 
-> aside: positive
-> **Aide** : Utilisez les opérateurs ``WHERE``, ``AND``, ``OR``, ``IS NULL``, ``LIKE`` selon les besoins.
-
 ---
 
 ## Exercice 3 : Requêtes de jointure simples
@@ -200,9 +180,6 @@ Effectuez les 3 requêtes de jointure suivantes :
 2. **Streams avec informations du streamer et du créneau** : Affichez le titre du stream, le pseudo du streamer, et la date du créneau. Filtrez sur les streams du 2025-09-05 ou du 2025-09-06.
 
 3. **Défis et leurs participants** : Affichez l'intitulé du défi, le nombre de streamers y participant, et le montant du palier. Utilisez la table ``participation_defi``.
-
-> aside: positive
-> **Aide** : Utilisez ``INNER JOIN`` pour les cas où tous les enregistrements doivent avoir une correspondance. Pensez à ``GROUP BY`` pour compter les participants en requête 3.
 
 ---
 
@@ -660,15 +637,13 @@ ORDER BY nb_depassements DESC;
 
 # 📋 Résumé des Phases et Timing
 
-| Phase | Exercices | Contenu | Durée Estimée |
-|-------|-----------|---------|---------------|
-| **Phase 1** | Ex1-3 | CRUD, SELECT, JOIN simples | 2h |
-| **Phase 2** | Ex4-5 | Agrégations, UPDATE, DELETE | 1h30 |
-| **Phase 3** | Ex6-7 | Requêtes avancées, CASE, validation | 2h |
-| **Phase 4** | Ex8 | Index, EXPLAIN ANALYZE, performance | 1h30 |
-| **Phase 5** | Ex9-10 | Window Functions, CTEs, optimisation avancée | Au-delà de 8h |
-| **TOTAL (Phases 1-4)** | | | **7h** (avec 1h buffer) |
-
+| Phase | Exercices | Contenu |
+|-------|-----------|---------|
+| **Phase 1** | Ex1-3 | CRUD, SELECT, JOIN simples | 
+| **Phase 2** | Ex4-5 | Agrégations, UPDATE, DELETE | 
+| **Phase 3** | Ex6-7 | Requêtes avancées, CASE, validation | 
+| **Phase 4** | Ex8 | Index, EXPLAIN ANALYZE, performance | 
+| **Phase 5** | Ex9-10 | Window Functions, CTEs, optimisation avancée | 
 ---
 
 # ✅ Checklist d'Autoévaluation
@@ -680,7 +655,6 @@ Avant de rendre votre travail, assurez-vous que :
 - [ ] Les requêtes d'Ex6-7 exécutent sans erreur
 - [ ] Les index d'Ex8 montrent une amélioration mesurable
 - [ ] Vos observations sur les performances sont documentées
-- [ ] Votre git repository contient un README.md expliquant la structure
 - [ ] Vous avez testé vos scripts sur une instance PostgreSQL propre
 
 ---

@@ -1,4 +1,4 @@
-# 🚀 COMMENCEZ ICI
+# 🚀 WORKSHOP ZEVENT
 
 Bienvenue dans le workshop SQL **ZEvent** ! 
 
@@ -55,8 +55,7 @@ Le mot de passe est ``polytech``.
 
 Pour exécuter des requêtes SQL, cliquez sur Tools>Query Tool.
 
-
-### 3️⃣ Créer un Repository Git (10 min)
+### 3️⃣ Créer un Repository Git
 
 Sur le poste de travail (dans Portainer ou un PC)
 
@@ -64,7 +63,6 @@ Sur le poste de travail (dans Portainer ou un PC)
 # 1. Créer un repo sur GitHub
 # 2. Cloner localement et forker sur un repository github personnel
 git clone https://github.com/alexandre-touret/sql-basics-workshop-polytech
-
 
 cd sql-basics-workshop-polytech
 
@@ -75,22 +73,21 @@ git config --global user.email "alexandre-touret@users.noreply.github.com"
 git status
 # Lister les upstreams
 git remote -vv
+
+# Créer un repository dans github sans aucun fichier
 #Ajouter un upstream
-git remote add upstream https/github....^C
+git remote add upstream https/github.com/%MON_USER_GITHUB%/sql-basics-workshop-polytech
 #Ajouter un fichier
 git add modelisation
 # Valider une modification
 git commit -a -m "Modelisation" 
 # Uploader une modification
 git push upstream main
-
 ```
-
 
 ### 5️⃣ Commencer le Workshop
 
 Suivre la timeline du `workshop.md` 
-
 
 ## ✅ Checklist Rapide
 
@@ -103,7 +100,7 @@ Suivre la timeline du `workshop.md`
 
 ---
 
-## 🚀 Let's go
+## 🚀 Workshop
 
-Ouvrez `WORKSHOP.md` → Phase 1 → Ex1 !
+Ouvrez `WORKSHOP.md` → Phase 1 → Ex1
 

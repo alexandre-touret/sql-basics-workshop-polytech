@@ -26,26 +26,20 @@ Ce workshop SQL couvre les concepts fondamentaux à avancés de PostgreSQL à tr
 
 Le workshop est organisé en **4 phases obligatoires + 1 bonus** :
 
-| Phase | Durée | Exercices | Objectif |
-|-------|-------|-----------|----------|
-| **Phase 1** | 2h | Ex1-3 | Fondamentaux CRUD et jointures simples |
-| **Phase 2** | 1.5h | Ex4-5 | Agrégations et modifications de données |
-| **Phase 3** | 2h | Ex6-7 | Requêtes avancées et validation |
-| **Phase 4** | 1.5h | Ex8 | Performance et indexation |
-| **Phase 5** | Optionnel | Ex9-10 | Window Functions et CTEs |
-
-**Total** : 7 heures (+ 1h buffer) = **8 heures**
+| Phase | Exercices | Objectif |
+|-------|-----------|----------|
+| **Phase 1** |  Ex1-3 | Fondamentaux CRUD et jointures simples |
+| **Phase 2** |  Ex4-5 | Agrégations et modifications de données |
+| **Phase 3** |  Ex6-7 | Requêtes avancées et validation |
+| **Phase 4** |  Ex8 | Performance et indexation |
+| **Phase 5** | Ex9-10 | (Optionnel) Window Functions et CTEs |
 
 ### Documents Fournis
 
 ```
 📁 Workshop SQL
-├── 📄 workshop.md                  ← Énoncé principal (à lire en entier)
-├── 📄 GUIDE_PEDAGOGIQUE.md         ← Pour les enseignants
-├── 📄 CHANGEMENTS.md               ← Résumé des modifications
-├── 📄 PROGRESSION.txt              ← Timeline détaillée avec visualisations
+├── 📄 WORKSHOP.md                  ← Énoncé principal (à lire en entier)
 ├── 📄 README_WORKSHOP.md           ← Ce fichier
-│
 └── 📁 scripts_sql/                 ← À compléter par l'étudiant
     ├── 2024_BDD_DUPONT_ALICE_EX1.sql
     ├── 2024_BDD_DUPONT_ALICE_EX2.sql
@@ -61,7 +55,7 @@ Le démarrage est décrit dans le fichier [START_HERE](./START_HERE.md).
 
 ## 📋 Énoncés des Phases
 
-### Phase 1 : Fondamentaux (2h)
+### Phase 1 : Fondamentaux
 
 **Exercice 1** : Population manuelle de 5 tables
 - Streamer, Créneau, Stream, Défi, Participation_Defi
@@ -73,7 +67,7 @@ Le démarrage est décrit dans le fichier [START_HERE](./START_HERE.md).
 **Exercice 3** : Jointures INNER/LEFT
 - 3 requêtes combinant 2-3 tables
 
-### Phase 2 : Requêtes Intermédiaires (1.5h)
+### Phase 2 : Requêtes Intermédiaires
 
 **Exercice 4** : Agrégations (COUNT, SUM, AVG)
 - 4 requêtes avec GROUP BY et HAVING
@@ -81,7 +75,7 @@ Le démarrage est décrit dans le fichier [START_HERE](./START_HERE.md).
 **Exercice 5** : UPDATE et DELETE
 - 4 requêtes de modification/suppression
 
-### Phase 3 : Avancé (2h)
+### Phase 3 : Avancé
 
 **Exercice 6** : Requêtes M:N avancées
 - 5 requêtes sur la relation streamer-défi
@@ -91,7 +85,7 @@ Le démarrage est décrit dans le fichier [START_HERE](./START_HERE.md).
 - Détection des dépassements
 - Calcul des durées
 
-### Phase 4 : Performance (1.5h)
+### Phase 4 : Performance
 
 **Exercice 8** : Index et EXPLAIN ANALYZE
 - Charger 400K+ lignes de données
@@ -118,7 +112,7 @@ Ex2 (SELECT simple) → Ex3 (JOIN)
                    Ex8 (Index + Perf)
 ```
 
-**Important** : Chaque exercice dépend des données des précédents. Si vous échouez Ex1, tout casse.
+**Important** : Chaque exercice dépend des données des précédents. 
 
 ---
 
@@ -126,11 +120,11 @@ Ex2 (SELECT simple) → Ex3 (JOIN)
 
 | Phase | Compétences Clés |
 |-------|-----------------|
-| **Phase 1** | INSERT, SELECT, WHERE, ORDER BY, INNER/LEFT JOIN, GROUP BY |
-| **Phase 2** | COUNT/SUM/AVG, HAVING, UPDATE, DELETE, sous-requêtes |
-| **Phase 3** | DISTINCT, EXISTS, CASE, EXTRACT, NOT EXISTS |
-| **Phase 4** | CREATE INDEX, EXPLAIN ANALYZE, optimisation |
-| **Phase 5** | ROW_NUMBER(), SUM() OVER(), WITH...AS (CTEs) |
+| **Phase 1** | ``INSERT``, ``SELECT``, ``WHERE``, ``ORDER BY``, ``INNER/LEFT JOIN``, ``GROUP BY`` |
+| **Phase 2** | ``COUNT/SUM/AVG``, ``HAVING``, ``UPDATE``, ``DELETE``, sous-requêtes |
+| **Phase 3** | ``DISTINCT``, ``EXISTS``, ``CASE``, ``EXTRACT``, ``NOT EXISTS`` |
+| **Phase 4** | ``CREATE INDEX``, ``EXPLAIN ANALYZE``, optimisation |
+| **Phase 5** | ``ROW_NUMBER()``, ``SUM()`` ``OVER()``, ``WITH...AS`` (CTEs) |
 
 ---
 
@@ -167,9 +161,8 @@ UPDATE ...
 ### Livraison
 
 1. Tous les fichiers dans un dossier `scripts_sql/`
-2. Un README.md expliquant la structure
-3. Commit et push sur GitHub
-4. Envoyer le lien par mail avec sujet : **[BDD4][NOM][PRENOM] - Rendu de TP**
+2. Commit et push sur GitHub
+3. Envoyer le lien par mail avec sujet : **[BDD4][NOM][PRENOM] - Rendu de TP**
 
 ---
 
@@ -235,22 +228,6 @@ C'est normal pour la première exécution (cache PostgreSQL).
 
 ---
 
-## 🆘 Aide et Support
-
-### Pendant le TP
-
-- Levez la main → l'enseignant vient vous aider
-- Lisez le message d'erreur complètement
-- Testez avec un SELECT avant UPDATE/DELETE
-
-### Après le TP
-
-Contactez : **[alexandre.touret@univ-tours.fr](mailto:alexandre.touret@univ-tours.fr)**
-- Sujet : `[BDD4][NOM][PRENOM] - Question`
-- Joignez votre script + l'erreur exacte
-
----
-
 ## ✅ Checklist de Rendu
 
 Avant de rendre votre travail :
@@ -262,39 +239,3 @@ Avant de rendre votre travail :
 - [ ] Phase 4 (Ex8) : observations documentées (timing, gain perf)
 - [ ] Git repository public avec README.md
 - [ ] Mail envoyé avec le lien git
-
----
-
-## 📈 Progression Visuelle
-
-```
-Timeline
-│
-├─ 00:00 ═══ PHASE 1 (2h) : Fondamentaux
-│         Ex1 (40min) → Ex2 (30min) → Ex3 (50min)
-│
-├─ 02:00 ☕ BREAK (15 min)
-│
-├─ 02:15 ═══ PHASE 2 (1.5h) : Intermédiaire
-│         Ex4 (45min) → Ex5 (45min)
-│
-├─ 03:45 ═══ PHASE 3 (2h) : Avancé
-│         Ex6 (60min) → Ex7 (60min)
-│
-├─ 05:45 ☕ BREAK (15 min)
-│
-├─ 06:00 ═══ PHASE 4 (1.5h) : Performance
-│         Insertions (20min) → EXPLAIN (15min) → Index (30min) → Bonus (15min)
-│
-└─ 07:30 ✅ FIN (avec 30 min buffer)
-```
-
----
-
-## 📞 Contact
-
-**Enseignant** : Alexandre Touret  
-**Email** : [alexandre.touret@univ-tours.fr](mailto:alexandre.touret@univ-tours.fr)  
-**TP** : Gestion de l'Infrastructure de Données - ZEvent  
-
----
