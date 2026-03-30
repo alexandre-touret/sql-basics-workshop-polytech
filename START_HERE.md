@@ -18,8 +18,8 @@ Lisez dans cet ordre :
 
 | Document | Durée | Objectif |
 |----------|-------|----------|
-| **WORKSHOP.md** (entier) | 10 min | Comprendre l'énoncé |
 | **README_WORKSHOP.md** | 3 min | Vue d'ensemble rapide |
+| **WORKSHOP.md** (entier) | 10 min | Comprendre l'énoncé |
 
 
 ### 3️⃣ Se connecter sur Portainer
@@ -95,8 +95,8 @@ Suivre la timeline du `workshop.md`
 
 - [ ] PostgreSQL installé + testé
 - [ ] Repo git créé
+- [ ] `README_WORKSHOP.md` lu
 - [ ] `WORKSHOP.md` lu
-- [ ] Prêt pour Phase 1
 
 ---
 
