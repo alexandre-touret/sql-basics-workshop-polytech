@@ -179,13 +179,17 @@ UPDATE ...
 
 ### Ordre d'Insertion Recommandé
 
-Pour Ex1, respectez cet ordre :
+Pour l'exercice 1, respectez cet ordre :
 
 1. **Streamer** (table indépendante)
 2. **Créneau** (FK → Streamer)
 3. **Défi** (table indépendante)
 4. **Participation_Defi** (FK → Streamer + Défi)
 5. **Stream** (FK → Streamer + Créneau)
+
+### Accents, caractères spéciaux
+
+NE PAS UTILISER de caractères spéciaux ou de caractères accentués (ex. é) !
 
 ---
 
@@ -202,11 +206,11 @@ C'est normal ! Les insertions massives sont lentes.
 C'est normal pour la première exécution (cache PostgreSQL).
 - Réexécutez 2 fois pour un temps réaliste
 
-### Je suis en retard
+### _Je suis en retard_
 
-**Priorité** : Ex1-7 sont essentiels, Ex8 est bonus
-- Vous pouvez sauter Phase 4 et la refaire après le TP
-- Les données d'Ex8 sont indépendantes (script de reset)
+**Priorité** : Les exercices 1 à 7 sont essentiels, l'exercice est bonus **(A valider lors du TP)**
+- Vous pouvez sauter la phase 4 et la refaire après le TP
+- Les données de l'exercice 8 sont indépendantes (script de reset)
 
 ---
 
