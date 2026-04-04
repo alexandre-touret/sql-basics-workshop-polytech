@@ -225,18 +225,18 @@ Vous allez modifier et supprimer des données dans la base.
 1. **Modifier un montant palier** : Augmentez de 10% le montant palier du défi "Saut en parachute" (ou un autre défi).
 
 2. **Valider tous les défis non validés ayant au moins 3 participants** : 
-   - Utilisez une sous-requête ``WHERE id_defi IN (SELECT ...)`` 
+   - Utilisez une sous-requête pour compter le nombre de participants par défi
    - Mettez à jour l'état de validation à ``TRUE``
 
 #### Partie B : DELETE
 
-3. **Supprimer les streams non terminés** : Supprimez tous les streams dont ``date_fin_effective IS NULL``.
+3. **Supprimer les streams non terminés** : Supprimez tous les streams dont la ``date_fin_effective``  est ``ǸULL``.
 
 4. **Supprimer les créneaux passés** : Supprimez les créneaux dont la date de fin autorisée est antérieure à aujourd'hui.
-   > **Conseil** : Utilisez ``date_fin_autorisee < CURRENT_DATE``
+   > **Conseil** : Utilisez la fonction ``CURRENT_DATE``
 
 > aside: negative
-> ⚠️ **ATTENTION** : Avant de supprimer, verifiez que les données référencées par des clés étrangères seront gérées (CASCADE). Testez d'abord avec un SELECT.
+> ⚠️ **ATTENTION** : Avant de supprimer, verifiez que les données référencées par des clés étrangères seront gérées (``CASCADE``). Testez d'abord avec un ``SELECT``.
 
 ---
 
