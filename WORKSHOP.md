@@ -101,7 +101,6 @@ Après avoir conçu la base de données, mettez en place en créant les tables e
 ### Contexte
 L'objectif de cet exercice est de simuler l'activité de l'événement en alimentant la base de données que vous avez créée précédemment. Vous devrez respecter les contraintes d'intégrité (clés étrangères) lors des insertions.
 
-Effectuez des requêtes ``SELECT`` pour vérifier que les données ont bien été insérées.
 
 ### Instructions
 
@@ -148,6 +147,12 @@ Un stream est une session temporelle avec une heure de début, une heure de fin,
 > aside: positive
 > **Conseil** : Utilisez des heures réalistes sur un week-end (ex: 2025-09-05 pour le vendredi, 2025-09-06 pour le samedi)
 
+
+#### Vérification des données
+
+Effectuez des requêtes ``SELECT`` pour vérifier que les données ont bien été insérées.
+
+
 ---
 
 ## Exercice 2 : Requêtes SELECT simples et filtrées
@@ -179,7 +184,7 @@ Effectuez les 3 requêtes de jointure suivantes :
 
 2. **Streams avec informations du streamer et du créneau** : Affichez le titre du stream, le pseudo du streamer, et la date du créneau. Filtrez sur les streams du 2025-09-05 ou du 2025-09-06.
 
-3. **Défis et leurs participants** : Affichez l'intitulé du défi, le nombre de streamers y participant, et le montant du palier. Utilisez la table ``participation_defi``.
+3. **Défis et leurs participants** : Affichez l'intitulé du défi, les pseudonymes des streamers y participant, et le montant du palier. Utilisez la table ``participation_defi``.
 
 ---
 
@@ -195,14 +200,16 @@ Vous allez maintenant calculer des statistiques sur vos données en utilisant le
 Effectuez les 4 requêtes suivantes :
 
 1. **Nombre total de streams par streamer** : Affichez le pseudo et le nombre de streams effectués, même pour les streamers n'ayant aucun stream (nombre = 0). Ordonnez par nombre décroissant.
-   > **Conseil** : Utilisez ``LEFT JOIN`` et ``COALESCE(COUNT(...), 0)``
+   > **Conseil** : Utilisez  ``COALESCE(COUNT(...), 0)`` pour afficher 0 au lieu de NULL.
 
 2. **Montant total des paliers de défis par état de validation** : Affichez si le défi est validé ou pas, et le montant total des paliers pour chaque état. 
 
 3. **Nombre de streamers ayant au moins 2 défis** : Affichez le pseudo et le nombre de défis de chaque streamer ayant au moins 2 défis.
 
-4. **Durée moyenne des streams (en heures)** : Calculez ``(heure_fin - heure_debut)`` en heures pour chaque stream, puis affichez la durée moyenne globale.
-   > **Conseil** : Utilisez ``EXTRACT(EPOCH FROM (heure_fin - heure_debut)) / 3600`` pour obtenir les heures
+4. **Durée moyenne des streams (en heures)** : Calculez ``(heure_fin - heure_debut)`` en heures pour chaque stream, puis affichez la durée moyenne globale. Affichez également le titre du stream.
+   > **Conseil** : Utilisez ``EXTRACT(EPOCH FROM (heure_fin - heure_debut)) / 3600`` pour obtenir les heures. Utilisez également la fonction ``ÀVG`` et ``OVER()`` pour afficher la durée moyenne à côté de chaque stream (ex. ``AVG(...) OVER() AS duree_moyenne``).
+
+5. **Afficher uniquement les streamers qui ont effectivement lancé au moins un stream, avec le titre de leur session**: Affiche le pseudo, le titre et l'heure de début.
 
 ---
 
