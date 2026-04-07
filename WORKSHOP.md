@@ -236,7 +236,7 @@ Vous allez modifier et supprimer des données dans la base.
    > **Conseil** : Utilisez la fonction ``CURRENT_DATE``
 
 > aside: negative
-> ⚠️ **ATTENTION** : Avant de supprimer, verifiez que les données référencées par des clés étrangères seront gérées (``CASCADE``). Testez d'abord avec un ``SELECT``.
+> ⚠️ **ATTENTION** : Avant de supprimer, verifiez que les données référencées par des clés étrangères seront gérées (cf. ``CASCADE``). Testez d'abord avec un ``SELECT``.
 
 ---
 
@@ -245,30 +245,29 @@ Vous allez modifier et supprimer des données dans la base.
 ## Exercice 6 : Requêtes avancées sur les données existantes
 
 ### Contexte
-Avant d'étendre le modèle, maîtrisons les requêtes complexes sur le schéma actuel : requêtes avec sous-requêtes, ``LEFT JOIN``, ``HAVING``, agrégations avancées.
+Avant d'étendre le modèle, maîtrisons les requêtes complexes sur le schéma actuel : requêtes avec sous-requêtes, ``LEFT JOIN``, ``HAVING``, `NOT EXISTS` et agrégations avancées.
 
 ### Instructions
 
 Effectuez les 5 requêtes suivantes :
 
-1. **Streamers ayant au moins un défi** : Utilisez ``DISTINCT`` ou une sous-requête ``EXISTS``.
+1. **Streamers ayant au moins un défi** : Affichez le pseudo du streamer et le nombre de défis auxquels il participe. 
 
-2. **Défis n'ayant aucun participant** : Utilisez ``LEFT JOIN`` avec ``IS NULL`` ou une sous-requête ``NOT IN``.
+2. **Défis n'ayant aucun participant** : Affichez l'intitulé et le montant des défis qui n'ont aucun streamer participant. 
 
-3. **Défis ayant plus de 2 streamers participants** : Affichez l'intitulé, le montant, et le nombre de participants. Utilisez ``GROUP BY`` avec ``HAVING``.
+3. **Défis ayant plus de 2 streamers participants** : Affichez l'intitulé, le montant, et le nombre de participants. 
+> **Conseil** : Utilisez la fonction ``COALESCE(COUNT(...), 0)``
 
 4. **Nombre de défis par streamer avec le montant total engagé** : Pour chaque streamer, affichez :
    - Pseudo
    - Nombre de défis
    - Montant total des paliers de ses défis
    - Ordonnez par montant total décroissant
-   > Utilisez ``SUM()`` et ``GROUP BY``
 
 5. **Streamers et créneaux avec nombre de streams effectués par créneau** : Affichez :
    - Pseudo du streamer
    - Dates du créneau
    - Nombre de streams effectués pour ce créneau
-   > Utilisez une jointure et ``GROUP BY`` sur (streamer, créneau)
 
 ---
 
@@ -313,8 +312,7 @@ END as validation
 
 4. Affichez un résumé : nombre de streams en retard, durée moyenne de retard
 
-> aside: positive
-> **Conseil** : Combinez les deux requêtes en une seule pour un aperçu complet de la conformité des streams.
+Combinez les deux requêtes en une seule pour un aperçu complet de la conformité des streams.
 
 ---
 
@@ -332,38 +330,19 @@ Nous simulons les effets indésirables du traitement d'un grand volume de donné
 Exécutez le script suivant pour charger un volume important de données (~ 700K lignes) :
 
 ```sql
--- Suppression des contraintes de clés étrangères pour la réinitialisation
-ALTER TABLE stream DROP CONSTRAINT IF EXISTS stream_id_streamer_fkey;
-ALTER TABLE stream DROP CONSTRAINT IF EXISTS stream_id_creneau_fkey;
-ALTER TABLE participation_defi DROP CONSTRAINT IF EXISTS participation_defi_id_streamer_fkey;
-ALTER TABLE participation_defi DROP CONSTRAINT IF EXISTS participation_defi_id_defi_fkey;
-ALTER TABLE creneau DROP CONSTRAINT IF EXISTS creneau_id_streamer_fkey;
+TRUNCATE TABLE stream, participation_defi, creneau, defi, streamer RESTART IDENTITY CASCADE;
 
--- Vidage des tables
-TRUNCATE TABLE stream RESTART IDENTITY CASCADE;
-TRUNCATE TABLE participation_defi RESTART IDENTITY CASCADE;
-TRUNCATE TABLE creneau RESTART IDENTITY CASCADE;
-TRUNCATE TABLE defi RESTART IDENTITY CASCADE;
-TRUNCATE TABLE streamer RESTART IDENTITY CASCADE;
-
--- Insert 50,000 streamers
+-- 2. Insert 50,000 streamers
 DO $$
-DECLARE
-    i INT;
 BEGIN
     FOR i IN 1..50000 LOOP
         INSERT INTO streamer (pseudo, url_twitch)
-        VALUES (
-            'pseudo_' || i,
-            'https://twitch.tv/pseudo_' || i
-        );
+        VALUES ('pseudo_' || i, 'https://twitch.tv/pseudo_' || i);
     END LOOP;
 END $$;
 
--- Insert 50,000 défis
+-- 3. Insert 50,000 défis
 DO $$
-DECLARE
-    i INT;
 BEGIN
     FOR i IN 1..50000 LOOP
         INSERT INTO defi (intitule, montant_palier, etat_validation)
@@ -375,24 +354,23 @@ BEGIN
     END LOOP;
 END $$;
 
--- Insert 250,000 participations (jointures M:N)
+-- 4. Insert 250,000 participations (M:N)
+-- Correction : Utilisation de FLOOR et gestion des conflits de clés primaires
 DO $$
-DECLARE
-    i INT;
 BEGIN
     FOR i IN 1..250000 LOOP
         INSERT INTO participation_defi (id_streamer, id_defi)
         VALUES (
-            (random() * 49999)::INT + 1,
-            (random() * 49999)::INT + 1
-        );
+            FLOOR(random() * 50000 + 1)::INT,
+            FLOOR(random() * 50000 + 1)::INT
+        )
+        ON CONFLICT DO NOTHING; -- Évite l'erreur si le couple existe déjà
     END LOOP;
 END $$;
 
--- Insert 100,000 créneaux
+-- 5. Insert 100,000 créneaux
 DO $$
 DECLARE
-    i INT;
     start_date TIMESTAMP;
     end_date TIMESTAMP;
 BEGIN
@@ -401,17 +379,16 @@ BEGIN
         end_date := start_date + (random() * 4 + 1)::INT * INTERVAL '1 hour';
         INSERT INTO creneau (id_streamer, date_debut_autorisee, date_fin_autorisee)
         VALUES (
-            (random() * 49999)::INT + 1,
+            FLOOR(random() * 50000 + 1)::INT,
             start_date,
             end_date
         );
     END LOOP;
 END $$;
 
--- Insert 100,000 streams avec date_fin_effective
+-- 6. Insert 100,000 streams
 DO $$
 DECLARE
-    i INT;
     start_date TIMESTAMP;
     end_date TIMESTAMP;
     effective_end_date TIMESTAMP;
@@ -425,8 +402,8 @@ BEGIN
                               END;
         INSERT INTO stream (id_streamer, id_creneau, titre, heure_debut, heure_fin, date_fin_effective)
         VALUES (
-            (random() * 49999)::INT + 1,
-            (random() * 99999)::INT + 1,
+            FLOOR(random() * 50000 + 1)::INT,
+            FLOOR(random() * 100000 + 1)::INT,
             'Stream caritatif ' || i,
             start_date,
             end_date,
@@ -434,21 +411,7 @@ BEGIN
         );
     END LOOP;
 END $$;
-```
 
-#### Étape 2 : Réajout des contraintes de clés étrangères
-
-```sql
-ALTER TABLE stream ADD CONSTRAINT stream_id_streamer_fkey 
-    FOREIGN KEY (id_streamer) REFERENCES streamer(id_streamer);
-ALTER TABLE stream ADD CONSTRAINT stream_id_creneau_fkey 
-    FOREIGN KEY (id_creneau) REFERENCES creneau(id_creneau);
-ALTER TABLE participation_defi ADD CONSTRAINT participation_defi_id_streamer_fkey 
-    FOREIGN KEY (id_streamer) REFERENCES streamer(id_streamer);
-ALTER TABLE participation_defi ADD CONSTRAINT participation_defi_id_defi_fkey 
-    FOREIGN KEY (id_defi) REFERENCES defi(id_defi);
-ALTER TABLE creneau ADD CONSTRAINT creneau_id_streamer_fkey 
-    FOREIGN KEY (id_streamer) REFERENCES streamer(id_streamer);
 ```
 
 #### Étape 3 : Exécuter une requête complexe SANS index
@@ -466,7 +429,9 @@ FROM streamer s
 JOIN participation_defi pd ON s.id_streamer = pd.id_streamer
 JOIN defi d ON pd.id_defi = d.id_defi
 LEFT JOIN stream st ON s.id_streamer = st.id_streamer
-WHERE s.id_streamer < 5000
+-- MODIFICATION : On applique une fonction sur la colonne indexée
+-- Cela empêche l'utilisation de l'index B-Tree classique
+WHERE (s.id_streamer + 0) < 5000 
 GROUP BY s.id_streamer, s.pseudo, d.id_defi, d.intitule
 ORDER BY s.pseudo, d.intitule;
 ```
@@ -548,7 +513,6 @@ Documentez votre analyse :
 1. Quels index ont eu le plus d'impact ?
 2. Pourquoi les jointures sur ``participation_defi`` étaient lentes sans index ?
 3. Quel est le gain de performance global (en %) ?
-4. Quand utiliser les index composés vs index simples ?
 
 ---
 
@@ -611,8 +575,10 @@ Approfondir l'optimisation des requêtes complexes.
 
 ### Instructions
 
-1. **Analyser une requête très complexe avec plusieurs jointures**
-2. **Créer des index partiels** (``WHERE`` clause dans l'index)
+1. **Analyser une requête très complexe avec plusieurs jointures** : Décrivez les étapes d'optimisation :
+   - Identifier les goulots d'étranglement : quelles sont les jointures les plus coûteuses ? Quels sont les filtres les moins sélectifs ? Quelles sont les opérations de tri ou d'agrégation les plus lourdes ?
+   - Proposer des index spécifiques
+2. **Créer des index partiels** (``WHERE`` clause dans l'index) : 
 3. **Étudier les statistiques de tables** (``ANALYZE``, ``pg_stat_statements``)
 
 Exemple de requête complexe multi-jointures :
