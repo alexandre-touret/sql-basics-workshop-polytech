@@ -44,7 +44,7 @@ Transformez votre schéma conceptuel en un schéma relationnel optimisé pour Po
 
 Traduction des relations :
 
-- Les relations ``1:N`` se traduisent par l'importation d'une clé étrangère dans la table "fille" (ex: ``id_streamer`` dans la table ``Stream``).
+- Les relations ``1:N`` se traduisent par l'importation d'une clé étrangère dans la table "fille".
 - La relation ``M:N`` doit impérativement être décomposée en une table de liaison portant les clés primaires des deux tables parentes (ex: ``participation_defi``).
 - Typage et Optimisation : Documentez précisément le schéma en choisissant des types PostgreSQL appropriés (ex: ``SERIAL`` pour l'auto-incrémentation, ``TEXT`` pour les messages de dons volumineux).
 - Intégrité Référentielle : Définissez les comportements en cascade (``ON DELETE CASCADE``) pour assurer la cohérence de la base lors de la suppression d'un streamer ou d'un défi.
