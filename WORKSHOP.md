@@ -101,10 +101,11 @@ Après avoir conçu la base de données, mettez en place en créant les tables e
 ### Contexte
 L'objectif de cet exercice est de simuler l'activité de l'événement en alimentant la base de données que vous avez créée précédemment. Vous devrez respecter les contraintes d'intégrité (clés étrangères) lors des insertions.
 
+**Renseigner dans le script SQL toutes les requêtes que vous réalisez pour peupler les tables.**
 
 ### Instructions
 
-#### Population de la table « Streamer » (Entité Pivot)
+#### Population de la table « Streamer »
 - Dictionnaire de données : Proposez une description du contenu de la table (ex: Quel type pour le pseudo ? Comment gérer l'URL Twitch ?).
 - Implémentation : (Déjà réalisée dans le script global, vérifiez simplement la structure).
 - Insertion : Complétez la table avec au moins 10 streamers célèbres (ex: ZeratoR, Antoine Daniel, Mister MV, Ultia, etc.).
@@ -142,7 +143,7 @@ Un stream est une session temporelle avec une heure de début, une heure de fin,
 - Insertion : Ajoutez au moins 10-15 streams. Assurez-vous que :
   - Chaque stream référence un créneau valide
   - Les heures de début/fin respectent le créneau autorisé
-  - Certains streams ont une `date_fin_effective` remplie, d'autres NULL
+  - Certains streams ont une `date_fin_effective` remplie, d'autres `NULL`
 
 > aside: positive
 > **Conseil** : Utilisez des heures réalistes sur un week-end (ex: 2025-09-05 pour le vendredi, 2025-09-06 pour le samedi)
