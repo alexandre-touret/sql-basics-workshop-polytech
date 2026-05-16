@@ -27,6 +27,8 @@ Lisez dans cet ordre :
 
 Se connecter au portail https://pedagogie.sandbox.univ-tours.fr:9443/#!/home .
 
+Connectez-vous avec votre compte universitaire (ex. ``jdoe@univ-tours.fr``).
+
 1. Cliquer sur la l'instance Docker courante
 ![stacks](./img/Screenshot%202025-04-12%20at%2021-31-26%20Portainer%2010.172.44.23%20-%20Docker%20CPU%201%20-%20docker1.pedagogie.sandbox.univ-tours.fr.png)
 
@@ -34,22 +36,53 @@ Se connecter au portail https://pedagogie.sandbox.univ-tours.fr:9443/#!/home .
 ![stack](./img/Screenshot%202025-04-12%20at%2021-31-36%20Portainer%2010.172.44.23%20-%20Docker%20CPU%201%20-%20docker1.pedagogie.sandbox.univ-tours.fr.png)
 
 3. Cliquer sur la stack courante
-![stack](./img/Screenshot%202025-04-12%20at%2021-32-00%20Portainer%2010.172.44.23%20-%20Docker%20CPU%201%20-%20docker1.pedagogie.sandbox.univ-tours.fr.png)
+![stack](./img/Screenshot%202026-05-16%20at%2017-42-55%20Portainer%2010.172.44.27%20-%20Docker%20EPU%20CPU%201%20-%20dockerepu1.pedagogie.sandbox.univ-tours.fr.png)
 
-4. Cliquer sur le port correspondant à PgAdmin ou VS Code
-![ports](./img/Screenshot%202025-04-12%20at%2021-32-21%20Portainer%2010.172.44.23%20-%20Docker%20CPU%201%20-%20docker1.pedagogie.sandbox.univ-tours.fr.png)
+3. Cliquer sur le port correspondant à PgAdmin ou VS Code et à votre identifiant. Par exemple, si votre identifiant est `22509749`, choisissez  ``22509749-pgadmin`` ou ``vscode-22509749`` et cliquer sur le port correspondant :
+
+![ports](./img/Screenshot%202026-05-16%20at%2017-44-18%20Portainer%2010.172.44.27%20-%20Docker%20EPU%20CPU%201%20-%20dockerepu1.pedagogie.sandbox.univ-tours.fr.png)
 
 ## Connexion à PgAdmin
 
 Connectez vous sur le port correspondant à PgAdmin.
 
-L'utilisateur est : ``user-name@domaine-name.com``
+L'utilisateur est : ``IDENTIFIANT@etu.univ-tours.fr`` (ex. ``22509749@etu.univ-tours.fr``).
 
-Le mot de passe est : ``strong-password``.
+Le mot de passe est : ``polytech``.
 
-Une fois connecté, vous aurez à vous connecter à la base.
 
-Le mot de passe est ``polytech``.
+## Connexion à la base de données
+
+Avec le clic droit, sélectionner "Register Server"
+
+![new server](./img/new_server.png)
+
+Remplir le champ suivant : 
+
+- Name : ``db``
+
+![new server](./img/new_server1.png)
+
+Laissez les autres champs au valeurs par défaut et cliquer sur "Connection".
+
+Remplir les champs suivants : 
+
+- Host : ``IDENTIFIANT-db`` (ex. ``22509749-db``)
+- Username : ``polytech``
+- Password : ``polytech``
+- Save Password : coché
+
+![new server2](./img/new_server2.png)
+
+Laissez les autres champs au valeurs par défaut et cliquer sur "Save".
+
+Si ce n'est pas déjà fait, vous pouvez aussi vous connecter via le menu contextuel et la commande "Connect Server".
+
+![new server3](./img/new_server3.png)
+
+Une fois connecté, vous devriez voir votre base de données dans la barre latérale gauche:
+
+![new server4](./img/new_server4.png)
 
 ## Exécuter des requêtes SQL
 
@@ -67,8 +100,9 @@ git clone https://github.com/alexandre-touret/sql-basics-workshop-polytech
 cd sql-basics-workshop-polytech
 
 #Configurer les infos utilisateur
-git config --global user.name "Alexandre Touret"
-git config --global user.email "alexandre-touret@users.noreply.github.com"
+# (Remplacez par votre nom et email GitHub)
+git config --global user.name "John Doe"
+git config --global user.email "John Doe <john.doe@example.com>"
 
 git status
 # Lister les upstreams

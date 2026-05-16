@@ -578,7 +578,7 @@ Approfondir l'optimisation des requêtes complexes.
 1. **Analyser une requête très complexe avec plusieurs jointures** : Décrivez les étapes d'optimisation :
    - Identifier les goulots d'étranglement : quelles sont les jointures les plus coûteuses ? Quels sont les filtres les moins sélectifs ? Quelles sont les opérations de tri ou d'agrégation les plus lourdes ?
    - Proposer des index spécifiques
-2. **Créer des index partiels** (``WHERE`` clause dans l'index) : 
+2. **Créer des index partiels** (``WHERE`` clause dans l'index) :  Indexer uniquement les streams qui ont dépassé leur horaire prévu pour accélérer les rapports de retard.
 3. **Étudier les statistiques de tables** (``ANALYZE``, ``pg_stat_statements``)
 
 Exemple de requête complexe multi-jointures :
@@ -608,7 +608,7 @@ ORDER BY nb_depassements DESC;
 
 ---
 
-# 📋 Résumé des Phases et Timing
+# 📋 Résumé des Phases 
 
 | Phase | Exercices | Contenu |
 |-------|-----------|---------|

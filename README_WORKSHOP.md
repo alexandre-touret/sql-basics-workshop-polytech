@@ -1,11 +1,5 @@
 # Workshop SQL - Gestion de l'Infrastructure de Données du ZEvent
 
-![Status](https://img.shields.io/badge/Workshop-Réorganisé-brightgreen?style=flat-square)
-![Level](https://img.shields.io/badge/Level-Bac%2B4-blue?style=flat-square)
-![Duration](https://img.shields.io/badge/Duration-8h-orange?style=flat-square)
-
----
-
 ## 📖 Vue d'ensemble
 
 Ce workshop SQL couvre les concepts fondamentaux à avancés de PostgreSQL à travers une étude de cas réaliste : la gestion des données du **ZEvent** (marathon de streaming caritatif).
@@ -234,7 +228,7 @@ C'est normal pour la première exécution (cache PostgreSQL).
 
 ## ✅ Checklist de Rendu
 
-Avant de rendre votre travail :
+Avant de rendre votre travail, vérifiez que 
 
 - [ ] Tous les fichiers Ex1-8 présents
 - [ ] Toutes les requêtes exécutent sans erreur
