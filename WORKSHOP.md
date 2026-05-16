@@ -9,7 +9,7 @@ Dans cet exercice, nous allons créer une base de données pour gérer les dons 
 
 ### Format 
 
-cf. [README_WORKSHOP](./README_WORKSHOP.md)
+cf. [README](./README.md)
 
 ## 📊 Analyse des besoins (Contexte ZEvent)
 
