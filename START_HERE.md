@@ -4,7 +4,7 @@ Bienvenue dans le workshop SQL **ZEvent** !
 
 Ce fichier vous guide pour débuter correctement. Lisez-le en entier avant de commencer.
 
-## 👨‍🎓 Pour les Étudiants
+## Pré-requis
 
 ### 1️⃣ Avant de commencer
 
