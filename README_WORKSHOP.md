@@ -126,6 +126,15 @@ Ex2 (SELECT simple) → Ex3 (JOIN)
 
 ### Nommage des fichiers
 
+#### Modélisation MCD/MLD
+
+Copier coller une copie d'écran dans le projet GIT avec ce format :
+
+- ```2024_BDD_[NOM]_[PRENOM]_MCD.png```
+- ```2024_BDD_[NOM]_[PRENOM]_MLD.png```
+
+#### Fichiers SQL
+
 ```
 2024_BDD_[NOM]_[PRENOM]_EX[N].sql
 ```
@@ -134,7 +143,7 @@ Exemple : `2024_BDD_DUPONT_ALICE_EX1.sql`
 
 ### Contenu attendu
 
-Chaque fichier doit contenir :
+Chaque fichier SQL doit contenir :
 
 ```sql
 -- ============================================
@@ -154,7 +163,8 @@ UPDATE ...
 
 ### Livraison
 
-1. Tous les fichiers dans un dossier `scripts_sql/`
+1. Tous les fichiers SQL dans un dossier `scripts_sql/`
+2. Tous les fichiers de modélisation (MCD/MLD) dans le dossier racine du projet
 2. Commit et push sur GitHub
 3. Envoyer le lien par mail avec sujet : **[BDD4][NOM][PRENOM] - Rendu de TP**
 
@@ -202,7 +212,7 @@ C'est normal pour la première exécution (cache PostgreSQL).
 
 ### _Je suis en retard_
 
-**Priorité** : Les exercices 1 à 7 sont essentiels, l'exercice est bonus **(A valider lors du TP)**
+**Priorité** : Les exercices 1 à 7 sont essentiels
 - Vous pouvez sauter la phase 4 et la refaire après le TP
 - Les données de l'exercice 8 sont indépendantes (script de reset)
 
@@ -228,7 +238,7 @@ C'est normal pour la première exécution (cache PostgreSQL).
 
 ## ✅ Checklist de Rendu
 
-Avant de rendre votre travail, vérifiez que 
+Avant de rendre votre travail, vérifiez que :
 
 - [ ] Tous les fichiers Ex1-8 présents
 - [ ] Toutes les requêtes exécutent sans erreur
